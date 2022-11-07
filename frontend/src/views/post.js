@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import SideBar from "../components/SideBar/sideBar";
 
 import { Card, CardContent,Typography, CardActions, Button, TextField } from "@mui/material";
-import { pinJSONtoIPFS, sendImageToIPFS } from "../lib/api/pinata";
+import { sendImageToIPFS } from "../lib/api/pinata";
+import { mintNFT } from "../lib/api/interact";
 
 const Post = () => {
 
@@ -18,14 +19,14 @@ const Post = () => {
     console.log(fileImage)
     const imageUrl = await sendImageToIPFS(formData)
 
-    // make metadata
+    // make matadata
     const metadata = new Object();
     metadata.title = title;
     metadata.imageUrl = imageUrl;
     metadata.description = description
 
     try {
-      pinJSONtoIPFS(metadata)
+      mintNFT(metadata)
     } catch (error) {
       console.log(error)
     }
