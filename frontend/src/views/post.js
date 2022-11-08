@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import SideBar from "../components/SideBar/sideBar";
 
-import { Card, CardContent,Typography, CardActions, Button, TextField } from "@mui/material";
+import { Card, CardContent,Typography, Button, TextField } from "@mui/material";
 import { sendImageToIPFS } from "../lib/api/pinata";
 import { mintNFT, connectWallet, getCurrentWalletConnected } from "../lib/api/interact";
 

@@ -10,7 +10,7 @@ const alchemy = new Alchemy(config);
 export const getAllNfts = async () => {
   // Contract address
   // 生成させたら書き換える
-  const address = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
+  const address = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
 
   // Flag to omit metadata
   const omitMetadata = false;
@@ -20,6 +20,7 @@ export const getAllNfts = async () => {
     omitMetadata: omitMetadata,
   });
   // console.log(JSON.stringify(response, null, 2));
+  console.log(response)
   const nfts = response.nfts
 
   const imageUrls = []

@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 
 import SideBar from "../components/SideBar/sideBar";
+import { getNFT } from "../lib/api/interact";
 // import { getAllNfts } from "../lib/api/getNFT";
 
 const Home = () => {
 
   useEffect(() => {
     // getAllNfts()
+    getNFT()
   },[])
 
   return (

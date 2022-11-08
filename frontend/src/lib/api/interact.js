@@ -6,6 +6,9 @@ const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
+// const testAddress = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+// const testPrivateKey = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
 export const connectWallet = async () => {
   if (window.ethereum) {
     try {
@@ -109,6 +112,8 @@ export const mintNFT = async (metadata) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
   console.log("contract is", window.contract)
 
+  console.log(window.ethereum.selectedAddress)
+
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
     from: window.ethereum.selectedAddress, // must match user's active address.
@@ -135,3 +140,9 @@ export const mintNFT = async (metadata) => {
     };
   }
 };
+
+export const getNFT = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  console.log(window.contract.methods)
+  window.contract.methods.viewNFT()
+}
