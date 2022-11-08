@@ -1,6 +1,0 @@
-.exit
-.help
-exit
-quit
-ethers.getSigners()
-ethers

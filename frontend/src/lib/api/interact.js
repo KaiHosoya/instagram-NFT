@@ -142,7 +142,14 @@ export const mintNFT = async (metadata) => {
 };
 
 export const getNFT = async() => {
-  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-  console.log(window.contract.methods)
-  window.contract.methods.viewNFT()
+  // window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  const contract = new web3.eth.Contract(contractABI, contractAddress);
+  console.log(contract)
+  // await web3.contract.tokenURI(1)
+  // .then((url) => {
+  //   console.log("url: ", url)
+  //   .catch((err) => {
+  //     console.log("error: ", err)
+  //   })
+  // })
 }
