@@ -71,6 +71,7 @@ const Post = () => {
     metadata.title = title;
     metadata.imageUrl = imageUrl;
     metadata.description = description
+    console.log(metadata)
 
     try {
       const { success, status } = await mintNFT(metadata); 

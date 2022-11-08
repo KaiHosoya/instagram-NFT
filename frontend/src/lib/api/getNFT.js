@@ -7,24 +7,28 @@ const config = {
 };
 const alchemy = new Alchemy(config);
 
-export const getNFT = async () => {
+export const getAllNfts = async () => {
   // Contract address
-  const address = "0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c";
+  // 生成させたら書き換える
+  const address = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
 
   // Flag to omit metadata
   const omitMetadata = false;
 
-  const ensContractAddress = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
-  const nfts = await alchemy.nft.getNftsForOwner(address, {
-    contractAddresses: [ensContractAddress],
+  // Get all NFTs
+  const response = await alchemy.nft.getNftsForContract(address, {
     omitMetadata: omitMetadata,
-  })
-  console.log(nfts)
+  });
+  // console.log(JSON.stringify(response, null, 2));
+  const nfts = response.nfts
 
-  let i = 1;
-
-  for (let nft of nfts) {
-    console.log(`${i}. ${nft.rawMetadata.image}`);
-    i++;
+  const imageUrls = []
+  for (let i = 0; i < nfts.length; i++) {
+    const IPFS = nfts[i].rawMetadata.image;
+    imageUrls[i] = "https://gateway.pinata.cloud/" + IPFS
   }
+  console.log(imageUrls)
+  return imageUrls
 };
+
+// "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash

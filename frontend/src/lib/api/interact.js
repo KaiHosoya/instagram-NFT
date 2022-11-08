@@ -2,7 +2,7 @@ import { pinJSONtoIPFS } from "./pinata";
 require("dotenv")
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract/contract-abi.json");
-const contractAddress = "0x6f88e7669d99f4f74d6c85d66ca61cc4ef4a9bb5908d9678e872873d3496e6e1";
+const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
@@ -89,7 +89,7 @@ export const getCurrentWalletConnected = async () => {
 // }
 
 export const mintNFT = async (metadata) => {
-  if (metadata) {
+  if (!metadata) {
     return {
       success: false,
       status: "❗Please make sure all fields are completed before minting.",
@@ -97,6 +97,7 @@ export const mintNFT = async (metadata) => {
   }
 
   const pinataResponse = await pinJSONtoIPFS(metadata)
+  console.log("pinataResponse is ", pinataResponse)
   if (!pinataResponse.success) {
     return {
       success: false,
@@ -106,7 +107,7 @@ export const mintNFT = async (metadata) => {
   const tokenURI = pinataResponse.pinataUrl;
 
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-  console.log(window.contract)
+  console.log("contract is", window.contract)
 
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
