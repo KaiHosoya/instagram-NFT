@@ -1,0 +1,13 @@
+.home {
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+}
+
+.content {
+  vertical-align: middle;
+  justify-content: center;
+  margin-left: 40px;
+}
