@@ -2,7 +2,7 @@ import { pinJSONtoIPFS } from "./pinata";
 require("dotenv")
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract/contract-abi.json");
-const contractAddress = "0x6a625B4A27c30Bed6710798Bd61a09c9B5F0D5e1";
+const contractAddress = "0x6f88e7669d99f4f74d6c85d66ca61cc4ef4a9bb5908d9678e872873d3496e6e1";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
@@ -106,6 +106,7 @@ export const mintNFT = async (metadata) => {
   const tokenURI = pinataResponse.pinataUrl;
 
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  console.log(window.contract)
 
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
