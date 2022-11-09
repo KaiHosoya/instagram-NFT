@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Home from "./views/home";
 import Post from "./views/post";
+import Profile from "./views/profile";
+import Test from "./views/test";
 
 function App() {
   return (
@@ -9,7 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element = { <Home /> } />
         <Route path="/post" element={ <Post />} />
-        {/* <Router path="/profile" element={ <Profile />} /> */}
+        <Route path="/profile" element={ <Profile />} />
+        <Route path="/test" element={ <Test />} />
       </Routes>
     </BrowserRouter>
   );

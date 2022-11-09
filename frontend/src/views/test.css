@@ -1,0 +1,17 @@
+.header {
+  background-color: azure;
+  color: black;
+}
+
+.logo {
+  font-family: 'Times New Roman', Times, serif; 
+  color: black;
+}
+
+.menuButton {
+  /* size: 18px;
+  margin-left: 900px;
+  text-align: right;
+  justify-content: flex-end; */
+  display: flex;
+}
