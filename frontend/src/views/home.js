@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Grid, Box } from "@mui/material";
 import "./home.css"
 
-import SideBar from "../components/SideBar/sideBar";
 import { tokenURI } from "../lib/api/interact";
 import IndexCard from "../components/Card/indexCard";
+import Header from "../components/Header/header";
 
 const Home = () => {
 
@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <SideBar className="sidebar"/>
+      <Header />
       <div className="content">
         <Box
           display="flex"

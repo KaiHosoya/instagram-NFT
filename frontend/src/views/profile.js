@@ -3,13 +3,13 @@ import { Card, CardContent, CardMedia, Typography, CardActions, Button, Box } fr
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-import SideBar from "../components/SideBar/sideBar";
 import "./profile.css"
+import Header from "../components/Header/header";
 
 const Profile = () => {
   return (
     <div className="profile">
-      <SideBar />
+      <Header/>
       <div className="content">
         <Box
           display="flex"
@@ -17,7 +17,7 @@ const Profile = () => {
           alignItems="center"
           minHeight="100vh"
         >
-          <Card sx={{ maxWidth: 345 }} className="card">
+          <Card sx={{ maxWidth: 800 }} className="card">
             <CardMedia
               component="img"
               src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import SideBar from "../components/SideBar/sideBar";
-
-import { Card, CardContent,Typography, Button, TextField } from "@mui/material";
+import { Card, CardContent,Typography, Button, TextField, Container, Stack, Input } from "@mui/material";
 import { sendImageToIPFS } from "../lib/api/pinata";
 import { mintNFT, connectWallet, getCurrentWalletConnected } from "../lib/api/interact";
+import Header from "../components/Header/header";
 
 const Post = () => {
 
@@ -90,7 +89,7 @@ const Post = () => {
 
   return (
     <div style={styles.post}>
-      <SideBar />
+      <Header />
       <div style={styles.content}>
         <button id="walletButton" onClick={connectWalletPressed}>
           {walletAddress?.length > 0 ? (
@@ -103,35 +102,38 @@ const Post = () => {
           )}
         </button>
         <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography>画像や動画を投稿</Typography>
-            </CardContent>
-
-            {/* <CardActions> */}
-              <form
-                onSubmit={handleSubmit}
-              >
-                <TextField
-                  placeholder="タイトル"
-                  onChange={(e) => {setTitle(e.target.value)}}
-                />
-                <input
-                  type="file"
-                  onChange={(e) => {setFileImage(e.target.files[0])}}
-                />
-                <TextField
-                  placeholder="つぶやき"
-                  onChange={(e) => {setDescription(e.target.value)}}
-                  // variant="standard" 
-                  fullWidth required
-                />
-                <Button
-                  type="submit"
-                >
-                  投稿
-                </Button>
-              </form>
-            {/* </CardActions> */}
+          <form
+            onSubmit={handleSubmit}
+          >
+            <Container>
+              <Stack spacing={2}>
+                <CardContent>
+                  <Typography>画像や動画を投稿</Typography>
+                </CardContent>
+              {/* <CardActions> */}
+                  <TextField
+                    placeholder="タイトル"
+                    onChange={(e) => {setTitle(e.target.value)}}
+                  />
+                  <Input
+                    type="file"
+                    onChange={(e) => {setFileImage(e.target.files[0])}}
+                  />
+                  <TextField
+                    placeholder="つぶやき"
+                    onChange={(e) => {setDescription(e.target.value)}}
+                    // variant="standard" 
+                    fullWidth required
+                  />
+                  <Button
+                    type="submit"
+                  >
+                    投稿
+                  </Button>
+              </Stack>
+              {/* </CardActions> */}
+            </Container>
+          </form>
         </Card>
         {status}
       </div>
@@ -142,9 +144,9 @@ const Post = () => {
 export default Post
 
 const styles = {
-  post: {
-    display: "flex"
-  },
+  // post: {
+  //   display: "flex"
+  // },
 
   content: {
     display: "block",

@@ -6,7 +6,7 @@ export const NFTCard = () => {
 
   return (
     <div className="main">
-        <Card sx={{ maxWidth: 345 }} className="card">
+        <Card sx={{ maxWidth: 700 }} className="card">
           <CardMedia
             component="img"
             src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"
