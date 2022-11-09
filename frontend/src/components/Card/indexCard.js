@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function IndexCard() {
+const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"})  =>{
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -53,7 +53,7 @@ export default function IndexCard() {
       <CardMedia
         component="img"
         height="194"
-        src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"
+        src={src}
         alt="Paella dish"
       />
       <CardContent>
@@ -110,4 +110,10 @@ export default function IndexCard() {
       </Collapse>
     </Card>
   );
+}
+
+export default IndexCard
+
+IndexCard.defalutprops = {
+  src: "https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"
 }

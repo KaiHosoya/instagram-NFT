@@ -30,13 +30,13 @@ const Home = () => {
   return (
     <div className="home">
       <Header />
-      <img src={metadata["imageUrl"]} alt="NFTimage"/>
-      <p>{metadata["title"]}</p>
+      {/* <img src={metadata["imageUrl"]} alt="NFTimage"/> */}
+      {/* <p>{metadata["title"]}</p> */}
       <div className="content">
         <Box>
           <Grid container spacing={3} >
             <Grid item >
-              <IndexCard></IndexCard>
+              <IndexCard src={metadata["imageUrl"]}></IndexCard>
             </Grid>
             <Grid item >
               <IndexCard></IndexCard>
