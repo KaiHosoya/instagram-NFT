@@ -27,7 +27,13 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz"})  =>{
+const IndexCard = (
+  {src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz",
+   title="Shrimp and Chorizo Paella",
+   description="This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.",
+   create_at="September 14, 2016"
+  }
+  )  =>{
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -47,8 +53,8 @@ const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoM
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={title}
+        subheader={create_at}
       />
       <CardMedia
         component="img"
@@ -58,9 +64,7 @@ const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoM
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {/* {description} */}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -81,8 +85,10 @@ const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoM
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
           <Typography paragraph>
+            {description}
+          </Typography>
+          {/* <Typography paragraph>
             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
             aside for 10 minutes.
           </Typography>
@@ -105,7 +111,7 @@ const IndexCard = ({src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoM
           </Typography>
           <Typography>
             Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
+          </Typography> */}
         </CardContent>
       </Collapse>
     </Card>

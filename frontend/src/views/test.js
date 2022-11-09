@@ -1,16 +1,38 @@
-import {React} from "react";
+import {React, useEffect, useContext} from "react";
+
 
 import "./test.css"
 import Header from "../components/Header/header";
 import IndexCard from "../components/Card/indexCard";
+import { NFTContext } from "../App" 
+import { Box, Grid } from "@mui/material";
 
 const Test = () => {
+
+  const { metadatas } = useContext(NFTContext)
+  console.log(metadatas)
+
+  useEffect(() => {
+  },[])
+
   return (
-    <div>
-      <Header />
-      {/* <IndexCard src="https://c.neevacdn.net/image/fetch/s--jOab4b64--/https%3A//cdn.thinglink.me/api/image/479353026285404161/1024/10/scaletowidth/0/0/1/1/false/true%3Fwait%3Dtrue?savepath=true"/> */}
-      <IndexCard/>
-    </div>
+    // <div>
+    //   <Header />
+    //   <Box>
+    //     <Grid container spacing={3} alignItems="center" justify="center">
+    //     {/* 現状では写真が表示できないのでパス:  src={metadata["imageUrl"]}*/}
+    //     {/* <IndexCard title={metadata["title"]} description={metadata["description"]}/> */}
+    //     {metadatas.map((metadata, key) => {
+    //       return (
+    //         <Grid item xs={4}>
+    //           <IndexCard key={key} title={metadata.title} description={metadata.description} src={metadata}/>
+    //         </Grid>
+    //       )
+    //     })}
+    //     </Grid>
+    //   </Box>
+    // </div>
+    <h1>テスト</h1>
   )
 }
 

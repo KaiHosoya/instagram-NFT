@@ -149,17 +149,41 @@ export const mintNFT = async (metadata) => {
 
 export const tokenURI = async(id) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-  // return await window.contract.methods.tokenURI(id)
   const response = await window.contract.methods.tokenURI(id).call()
   .then((res) => {
     return res
   })
-
-  // axios
-  // .get(response)
-  // .then((res) => {
-  //   // console.log(res.data["imageUrl"])
-  //   return res.data
-  // })
   return response
+}
+
+export const ownerTokenURIs = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  const counts =
+  await window.contract.methods.balanceOf("0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c").call()
+  .then((res) => {
+    return res
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  const URIs = Array()
+  for (let i = 0; i < counts; i++) {
+    await tokenURI(i)
+      .then((res) => {
+        // console.log(res);
+        axios
+          .get(res)
+          .then((res) => {
+            // console.log(res.data);
+            URIs.push(res.data)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  return URIs
 }
