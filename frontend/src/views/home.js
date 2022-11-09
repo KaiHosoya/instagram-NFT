@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios"
 import { Grid, Box } from "@mui/material";
 import "./home.css"
 
@@ -7,28 +8,33 @@ import IndexCard from "../components/Card/indexCard";
 import Header from "../components/Header/header";
 
 const Home = () => {
+  const [metadata, setMetadata] = useState()
 
+  // interact.jsに移行したいがうまくデータを返せない
   const getNFT = async() => {
-    const response = await tokenURI(1)
-    console.log(response)
+    await tokenURI(1)
+    .then((response) => {
+      axios
+      .get(response)
+      .then((res) => {
+        console.log(res.data)
+        setMetadata(res.data)
+      })
+    })
   } 
-  getNFT()
 
   useEffect(() => {
-
+    getNFT()
   },[])
 
   return (
     <div className="home">
       <Header />
+      <img src={metadata["imageUrl"]} alt="NFTimage"/>
+      <p>{metadata["title"]}</p>
       <div className="content">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-        >
-          <Grid container spacing={3}>
+        <Box>
+          <Grid container spacing={3} >
             <Grid item >
               <IndexCard></IndexCard>
             </Grid>
