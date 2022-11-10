@@ -28,7 +28,7 @@ const Home = () => {
           {metadatas.map((metadata, key) => {
             return (
                 <Grid item xs={4} key={key} className="item">
-                  <IndexCard key={key} title={metadata.title} description={metadata.description} create_at={metadata.create_at}/>
+                  <IndexCard key={key} title={metadata.title} description={metadata.description} create_at={metadata.create_at} src={metadata.imageUrl}/>
                 </Grid>
             )
           })}

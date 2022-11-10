@@ -3,10 +3,12 @@ import React from "react";
 
 import "./test.css"
 import Header from "../components/Header/header";
-import { transferNFT } from "../lib/api/interact";
+import { transferNFT, getOwner, test } from "../lib/api/interact";
 
 const Test = () => {
-  transferNFT()
+  // transferNFT()
+  test()
+  getOwner(0)
   return (
     <div className="profile">
       <Header/>

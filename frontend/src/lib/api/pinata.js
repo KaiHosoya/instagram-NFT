@@ -17,7 +17,7 @@ export const sendImageToIPFS = async (formData) => {
               },
           });
 
-          const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
+          const ImgHash = `ipfs/${resFile.data.IpfsHash}`;
         console.log(ImgHash); 
         console.log("https://gateway.pinata.cloud/" + ImgHash)
         const imageUrl = "https://gateway.pinata.cloud/" + ImgHash
