@@ -70,6 +70,7 @@ const Post = () => {
     metadata.title = title;
     metadata.imageUrl = imageUrl;
     metadata.description = description
+    metadata.create_at = new Date().toLocaleString();
     console.log(metadata)
 
     try {
@@ -144,9 +145,6 @@ const Post = () => {
 export default Post
 
 const styles = {
-  // post: {
-  //   display: "flex"
-  // },
 
   content: {
     display: "block",

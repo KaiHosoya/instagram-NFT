@@ -3,7 +3,7 @@ import { pinJSONtoIPFS } from "./pinata";
 require("dotenv")
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract/contract-abi.json");
-const contractAddress = "0xf50153b13a80bfd1e2e9249c9689124d92e543d8";
+const contractAddress = "0x8B26255d4a5a9D97ffc7E3C7800Cf0bdbE80C1d9";
 // const contractAddress = "0xd5e8B397f1Aa6059b2f81ef52b26e07B6c1b164c"
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
@@ -149,17 +149,78 @@ export const mintNFT = async (metadata) => {
 
 export const tokenURI = async(id) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-  // return await window.contract.methods.tokenURI(id)
   const response = await window.contract.methods.tokenURI(id).call()
   .then((res) => {
     return res
   })
-
-  // axios
-  // .get(response)
-  // .then((res) => {
-  //   // console.log(res.data["imageUrl"])
-  //   return res.data
-  // })
   return response
+}
+
+export const ownerTokenURIs = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  const counts =
+  await window.contract.methods.balanceOf("0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c").call()
+  .then((res) => {
+    return res
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  const URIs = Array()
+  for (let i = 0; i < counts; i++) {
+    await tokenURI(i)
+      .then((res) => {
+        // console.log(res);
+        axios
+          .get(res)
+          .then((res) => {
+            // console.log(res.data);
+            URIs.push(res.data)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  return URIs
+}
+
+export const transferNFT = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress)
+  await window.contract.methods.safeTransferFrom(window.ethereum.selectedAddress, "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 3).call()
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
+export const getOwner = async(id) => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress)
+  const response = await window.contract.methods.ownerOf(id).call()
+  .then((res) => {
+    console.log(res)
+    return res
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  return response
+}
+
+export const test = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress)
+  await window.contract.methods.TransferNFT(window.ethereum.selectedAddress, "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0).call()
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+  // console.log(window.contract.methods)
 }
