@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import axios from "axios";
 
-import { ownerTokenURIs, tokenURI } from "./lib/api/interact";
+import { ownerTokenURIs } from "./lib/api/interact";
 
 import Home from "./views/home";
 import Post from "./views/post";
 import Profile from "./views/profile";
 import Test from "./views/test";
+import Purchase from "./views/purchase";
 
 export const NFTContext = createContext()
 
 function App() {
-  // const [counts, setCounts] = useState()
   const [metadatas, setMetadatas] = useState([])
 
   const getCounts = async() => {
@@ -40,6 +39,7 @@ function App() {
             <Route path="/" element = { <Home /> } />
             <Route path="/post" element={ <Post />} />
             <Route path="/profile" element={ <Profile />} />
+            <Route path="/purchase" element={ <Purchase />} />
             <Route path="/test" element={ <Test />} />
         </Routes>
       </NFTContext.Provider>

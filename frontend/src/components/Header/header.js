@@ -22,7 +22,18 @@ const Header = () => {
       link: "/profile"
     }
   ]
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+  const settings = [
+    {
+      title: "Profile",
+      link: "/profile"
+    },
+    {
+      title: "Logout",
+      // 処理分からん
+      link: "/"
+    }
+  ]
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -47,26 +58,7 @@ const Header = () => {
     <AppBar position="static" style={{backgroundColor: "#b0c4de"}}>
       <Container >
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Times New Roman',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          > */}
-          {/* </Typography> */}
-
           <img src="https://pbs.twimg.com/media/FhKRzTkVIAAEJ1W?format=png&name=240x240" onClick={() => {navigate("/")}} alt="chaichai"/>
-          {/* <img src="https://www.nin-fan.net/tool/image/90fu3.png" onClick={() => {navigate("/")}} alt="chaichai"/> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -160,9 +152,9 @@ const Header = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map((value, key) => (
+                <MenuItem key={key} onClick={() => {navigate(value.link)}}>
+                  <Typography textAlign="center">{value.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
