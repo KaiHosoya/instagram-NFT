@@ -34,4 +34,6 @@ contract MyNFT is ERC721, ERC721URIStorage {
     {
         return super.tokenURI(tokenId);
     }
+
+    // 所有権の移譲と値段の設定
 }

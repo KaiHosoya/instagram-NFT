@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useState } from "react";
 import { AppBar, Typography, Button, Toolbar, Box, IconButton, Container, Tooltip, Menu, MenuItem, Avatar } from "@mui/material"
 import AdbIcon from '@mui/icons-material/Adb';
@@ -65,7 +65,8 @@ const Header = () => {
           > */}
           {/* </Typography> */}
 
-          <img src="https://www.nin-fan.net/tool/image/0jg56.png" onClick={() => {navigate("/")}} alt="chaichai"/>
+          <img src="https://pbs.twimg.com/media/FhKRzTkVIAAEJ1W?format=png&name=240x240" onClick={() => {navigate("/")}} alt="chaichai"/>
+          {/* <img src="https://www.nin-fan.net/tool/image/90fu3.png" onClick={() => {navigate("/")}} alt="chaichai"/> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton

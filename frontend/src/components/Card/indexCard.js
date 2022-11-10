@@ -60,7 +60,7 @@ const IndexCard = (
         component="img"
         height="194"
         src={src}
-        alt="Paella dish"
+        // alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

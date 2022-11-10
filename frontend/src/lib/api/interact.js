@@ -187,3 +187,8 @@ export const ownerTokenURIs = async() => {
   }
   return URIs
 }
+
+export const transferNFT = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress)
+  console.log(window.contract.methods)
+}
