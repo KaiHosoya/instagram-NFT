@@ -29,6 +29,10 @@ const Header = () => {
       link: "/profile"
     },
     {
+      title: "MY NFT",
+      link: "/contents"
+    },
+    {
       title: "Logout",
       // 処理分からん
       link: "/"

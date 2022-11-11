@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { NFTContext } from "../App";
+import { NFTContext } from "../../App";
 
-import Header from "../components/Header/header";
-import { transferNFT } from "../lib/api/interact";
+import Header from "../../components/Header/header";
+import { transferNFT } from "../../lib/api/interact";
 import "./purchase.css"
 
 const Purchase = () => {

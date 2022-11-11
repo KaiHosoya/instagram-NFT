@@ -4,8 +4,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 
-import "./test.css"
-import Header from "../components/Header/header";
+import "./profile.css"
+import Header from "../../components/Header/header";
 
 const Test = () => {
 

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent,Typography, Button, TextField, Container, Stack, Input } from "@mui/material";
-import { sendImageToIPFS } from "../lib/api/pinata";
-import { mintNFT, connectWallet, getCurrentWalletConnected } from "../lib/api/interact";
-import Header from "../components/Header/header";
+import { sendImageToIPFS } from "../../lib/api/pinata";
+import { mintNFT, connectWallet, getCurrentWalletConnected } from "../../lib/api/interact";
+import Header from "../../components/Header/header";
 import "./post.css"
+import { NFTContext } from "../../App";
 
 const Post = () => {
   // pinataに送るようの画像データ
@@ -19,6 +20,7 @@ const Post = () => {
   const [status, setStatus] = useState();
 
   const navigate = useNavigate()
+  const { setOpen } = useContext(NFTContext)
 
   const onChangeImage = (e) => {
     setFileImage(e.target.files[0])
@@ -99,6 +101,7 @@ const Post = () => {
         setTitle("");
         setDescription("");
         setFileImage("");
+        setOpen(true)
         navigate("/", { state: {message: "投稿しました！"}})
       }
     } catch (error) {

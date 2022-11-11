@@ -4,11 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { allTokenURIs, getCurrentWalletAddress } from "./lib/api/interact";
 
-import Home from "./views/home";
-import Post from "./views/post";
-import Profile from "./views/profile";
+import Home from "./views/Home/home";
+import Post from "./views/Post/post";
+import Profile from "./views/Profile/profile";
 import Test from "./views/test";
-import Purchase from "./views/purchase";
+import Purchase from "./views/Purchase/purchase";
 
 export const NFTContext = createContext()
 

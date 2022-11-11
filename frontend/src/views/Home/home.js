@@ -4,9 +4,9 @@ import { Grid, Box, Collapse, Alert, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import "./home.css"
 
-import IndexCard from "../components/Card/indexCard";
-import Header from "../components/Header/header";
-import { NFTContext } from "../App";
+import IndexCard from "../../components/Card/indexCard";
+import Header from "../../components/Header/header";
+import { NFTContext } from "../../App";
 
 const Home = () => {
   const { metadatas, open, setOpen } = useContext(NFTContext)
