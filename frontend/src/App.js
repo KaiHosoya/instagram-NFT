@@ -9,6 +9,7 @@ import Post from "./views/Post/post";
 import Profile from "./views/Profile/profile";
 import Test from "./views/test";
 import Purchase from "./views/Purchase/purchase";
+import Contents from "./views/Content/contents";
 
 export const NFTContext = createContext()
 
@@ -38,11 +39,10 @@ function App() {
       console.log(err)
     })
   }
-  
+
   useEffect(() => {
     getCounts()
     getWalletAddress()
-    // getMetadas()
   }, [])
 
 
@@ -54,6 +54,7 @@ function App() {
             <Route path="/post" element={ <Post />} />
             <Route path="/profile" element={ <Profile />} />
             <Route path="/purchase" element={ <Purchase />} />
+            <Route path="/contents" element={ <Contents />} />
             <Route path="/test" element={ <Test />} />
         </Routes>
       </NFTContext.Provider>

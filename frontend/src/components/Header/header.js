@@ -28,10 +28,10 @@ const Header = () => {
       title: "Profile",
       link: "/profile"
     },
-    {
-      title: "MY NFT",
-      link: "/contents"
-    },
+    // {
+    //   title: "MY NFT",
+    //   link: "/contents"
+    // },
     {
       title: "Logout",
       // 処理分からん
