@@ -47,6 +47,25 @@ export const connectWallet = async () => {
   }
 }
 
+export const getCurrentWalletAddress = async () => {
+  if (window.ethereum) {
+    try {
+      const addressArray = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      if (addressArray.length > 0) {
+        return {
+          address: addressArray[0]
+        }
+      }
+    } catch (err) {
+      return {
+        address: ""
+      }
+    }
+  }
+}
+ 
 export const getCurrentWalletConnected = async () => {
   if (window.ethereum) {
     try {
@@ -188,14 +207,19 @@ export const ownerTokenURIs = async() => {
   return URIs
 }
 
-export const transferNFT = async() => {
+export const transferNFT = async(walletAddress ,tokenId) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress)
-  await window.contract.methods.safeTransferFrom(window.ethereum.selectedAddress, "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 3).call()
+  const OwnerAddress = await getOwner(tokenId)
+  console.log("wallet address is: ", walletAddress)
+  console.log("owner address is: ", OwnerAddress)
+  await window.contract.methods.TransferNFT(OwnerAddress, walletAddress, tokenId).call()
   .then((res) => {
     console.log(res)
+    return res
   })
   .catch((err) => {
     console.log(err)
+    return err
   })
 }
 
@@ -214,13 +238,11 @@ export const getOwner = async(id) => {
 
 export const test = async() => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress)
-  await window.contract.methods.TransferNFT(window.ethereum.selectedAddress, "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0).call()
+  await window.contract.methods.TransferNFT("0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1).call()
   .then((res) => {
     console.log(res)
   })
   .catch((err) => {
     console.log(err)
   })
-
-  // console.log(window.contract.methods)
 }

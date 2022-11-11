@@ -33,7 +33,8 @@ const IndexCard = (
   {src="https://gateway.pinata.cloud/ipfs/QmbPqm8vPuQFnRLw1CJoMnLUeMyfiJqHVKioXEV79KHCjz",
    title="Shrimp and Chorizo Paella",
    description="This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.",
-   create_at="September 14, 2016"
+   create_at="September 14, 2016",
+   id
   }
   )  =>{
   const [expanded, setExpanded] = React.useState(false);
@@ -60,7 +61,7 @@ const IndexCard = (
         action={
           // 購入画面に遷移
           // token idも取ってくる必要ある？ {state: {id: id}}
-          <IconButton aria-label='settings' onClick={() => {navigate("/purchase", { state: {id: 1, src: src, title: title, description: description}})}}>
+          <IconButton aria-label='settings' onClick={() => {navigate("/purchase", { state: {id: id,src: src, title: title, description: description}})}}>
             <ShoppingCartIcon />
           </IconButton>
         }

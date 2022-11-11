@@ -37,10 +37,8 @@ contract MyNFT is ERC721, ERC721URIStorage {
 
     // 所有権の移譲と値段の設定
 
-    event confirmTransferNFT(address from, address to, uint256 tokenId);
     function TransferNFT(address from, address to, uint256 tokenId) public  returns(string memory) {
         safeTransferFrom(from, to, tokenId);
-        emit confirmTransferNFT(from, to, tokenId);
         string memory status = "success";
         return status;
     }
