@@ -3,7 +3,7 @@ import { pinJSONtoIPFS } from "./pinata";
 require("dotenv")
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract/contract-abi.json");
-const contractAddress = "0x8B26255d4a5a9D97ffc7E3C7800Cf0bdbE80C1d9";
+const contractAddress = "0x1Ddd82aA2012F86A4BB249Ce2b3986D83EAE9549";
 // const contractAddress = "0xd5e8B397f1Aa6059b2f81ef52b26e07B6c1b164c"
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
@@ -108,10 +108,8 @@ export const getCurrentWalletConnected = async () => {
   }
 };
 
-// async function loadContract() {
-//   return new web3.eth.Contract(contractABI, contractAddress);
-// }
 
+// TODO：　pinataに画像が保存できなかったときに処理を中止する
 export const mintNFT = async (metadata) => {
   if (!metadata) {
     return {
@@ -175,10 +173,42 @@ export const tokenURI = async(id) => {
   return response
 }
 
-export const ownerTokenURIs = async() => {
+// 全てのNFTのURIを取得
+export const allTokenURIs = async() => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
   const counts =
-  await window.contract.methods.balanceOf("0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c").call()
+  await window.contract.methods.latest_tokenId().call()
+  .then((res) => {
+    return(res)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  const URIs = Array()
+  for (let i = 0; i < counts; i++) {
+    await tokenURI(i)
+    .then((res) => {
+      axios
+        .get(res)
+        .then((res) => {
+          URIs.push(res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+  return URIs
+}
+
+// 特定のアドレスが所有しているNFTのURIを取得
+export const ownerTokenURIs = async(walletAddress) => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  const counts =
+  await window.contract.methods.balanceOf(walletAddress).call()
   .then((res) => {
     return res
   })
@@ -236,13 +266,26 @@ export const getOwner = async(id) => {
   return response
 }
 
+export const getLatestTokenId = async() => {
+  window.contract = await new web3.eth.Contract(contractABI, contractAddress)
+  await window.contract.methods.latest_tokenId().call()
+  .then((res) => {
+    return res
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
 export const test = async() => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress)
-  await window.contract.methods.TransferNFT("0x6d36cdbC1f2D96A057961aB752E9B1e550498F7c","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1).call()
+  await window.contract.methods.latest_tokenId().call()
   .then((res) => {
     console.log(res)
   })
   .catch((err) => {
     console.log(err)
   })
+
+  // console.log(window.contract.methods)
 }

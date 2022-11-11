@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import { getCurrentWalletAddress, ownerTokenURIs } from "./lib/api/interact";
+import { allTokenURIs, getCurrentWalletAddress } from "./lib/api/interact";
 
 import Home from "./views/home";
 import Post from "./views/post";
@@ -18,8 +18,9 @@ function App() {
   const [walletAddress, setWalletAddress] = useState("")
 
   const getCounts = async() => {
-    await ownerTokenURIs()
+    await allTokenURIs()
     .then((res) => {
+      console.log(res)
       setMetadatas(res)
     })
     .catch((err) => {

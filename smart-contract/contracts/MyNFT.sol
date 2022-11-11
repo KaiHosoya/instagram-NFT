@@ -42,4 +42,10 @@ contract MyNFT is ERC721, ERC721URIStorage {
         string memory status = "success";
         return status;
     }
+
+    // NFT数の取得
+    function latest_tokenId() public view returns (uint256) {
+        uint256 tokenId = _tokenIdCounter.current();
+        return  tokenId;
+    }
 }

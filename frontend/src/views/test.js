@@ -11,6 +11,7 @@ import { transferNFT, getOwner, test } from "../lib/api/interact";
 
 const Test = () => {
   const { open, setOpen, walletAddress} = useContext(NFTContext)
+  test()
   const handleSubmit = async() => {
     await transferNFT(walletAddress, 1)
     .then((res) => {

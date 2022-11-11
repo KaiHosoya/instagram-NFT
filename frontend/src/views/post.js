@@ -8,8 +8,10 @@ import Header from "../components/Header/header";
 import "./post.css"
 
 const Post = () => {
-
+  // pinataに送るようの画像データ
   const [fileImage, setFileImage] = useState();
+  // 表示用の画像データ
+  const [image, setImage] = useState()
   const [title, setTitle] = useState();
   const [description, setDescription] = useState()
 
@@ -19,12 +21,13 @@ const Post = () => {
   const navigate = useNavigate()
 
   const onChangeImage = (e) => {
+    setFileImage(e.target.files[0])
     if(e.target.files && e.target.files[0]) {
       const file = e.target.files[0]
       const reader = new FileReader()
       reader.onload  = (e) => {
-        console.log(e.target.result)
-        setFileImage(e.target.result)
+        // console.log(e.target.result)
+        setImage(e.target.result)
       }
       reader.readAsDataURL(file)
     }
@@ -96,14 +99,12 @@ const Post = () => {
         setTitle("");
         setDescription("");
         setFileImage("");
-        navigate("/home", { state: {message: "投稿しました！"}})
+        navigate("/", { state: {message: "投稿しました！"}})
       }
     } catch (error) {
       console.log(error)
     }
   }
-
-  
 
   return (
     <div className="post">
@@ -138,7 +139,7 @@ const Post = () => {
                       // onChange={(e) => {setFileImage(e.target.files[0])}}
                       onChange={onChangeImage}
                     />
-                    <img className="post_picture" src={fileImage} alt="写真"/>
+                    <img className="post_picture" src={image} alt="写真"/>
                     <TextField
                       placeholder="つぶやき"
                       onChange={(e) => {setDescription(e.target.value)}}
