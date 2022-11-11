@@ -17,7 +17,7 @@ const Purchase = () => {
     await transferNFT(walletAddress, location.state.id)
     .then((res) => {
       console.log(res)
-      navigate("/")
+      navigate("/", { state: {message: "購入しました！"}})
       setOpen(true)
     })
     .catch((err) => {

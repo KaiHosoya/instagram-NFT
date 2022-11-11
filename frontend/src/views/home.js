@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Grid, Box, Collapse, Alert, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import "./home.css"
@@ -9,6 +10,7 @@ import { NFTContext } from "../App";
 
 const Home = () => {
   const { metadatas, open, setOpen } = useContext(NFTContext)
+  const location = useLocation()
   // console.log(metadatas[2].create_at)
 
 
@@ -38,7 +40,7 @@ const Home = () => {
             }
             sx={{ mb: 2 }}
           >
-            購入しました！
+            {open && <p> {location.state.message}</p>}
           </Alert>
         </Collapse>
       </Box>

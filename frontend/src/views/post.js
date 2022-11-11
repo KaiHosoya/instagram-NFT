@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent,Typography, Button, TextField, Container, Stack, Input } from "@mui/material";
 import { sendImageToIPFS } from "../lib/api/pinata";
 import { mintNFT, connectWallet, getCurrentWalletConnected } from "../lib/api/interact";
@@ -14,6 +15,8 @@ const Post = () => {
 
   const [walletAddress, setWalletAddress] = useState();
   const [status, setStatus] = useState();
+
+  const navigate = useNavigate()
 
   const onChangeImage = (e) => {
     if(e.target.files && e.target.files[0]) {
@@ -93,6 +96,7 @@ const Post = () => {
         setTitle("");
         setDescription("");
         setFileImage("");
+        navigate("/home", { state: {message: "投稿しました！"}})
       }
     } catch (error) {
       console.log(error)
