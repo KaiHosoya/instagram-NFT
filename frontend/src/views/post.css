@@ -1,0 +1,18 @@
+.post_content {
+  display: block;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  /* vertical-align: middle; */
+}
+
+.post_card {
+  height: 650px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.post_picture {
+  height: 300px;
+  width: 30%;
+}
