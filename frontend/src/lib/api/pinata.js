@@ -2,10 +2,7 @@ import axios from "axios";
 
 export const sendImageToIPFS = async (formData) => {
   if (formData) {
-    // console.log("file: ",fileImg)
-    console.log(process.env.REACT_APP_PINATA_API_KEY)
       try {
-
           const resFile = await axios({
               method: "post",
               url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
@@ -16,7 +13,6 @@ export const sendImageToIPFS = async (formData) => {
                   "Content-Type": "multipart/form-data"
               },
           });
-
           const ImgHash = `ipfs/${resFile.data.IpfsHash}`;
         console.log(ImgHash); 
         console.log("https://gateway.pinata.cloud/" + ImgHash)

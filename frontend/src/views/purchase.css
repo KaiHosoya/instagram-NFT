@@ -1,0 +1,36 @@
+.purchase {
+  display: flex;
+}
+
+.purchase-left {
+  flex-grow: 1;
+  /* vertical-align: middle; */
+  text-align: center;
+}
+
+.purchase-image {
+}
+
+.purchase-right {
+  flex-grow: 1;
+}
+
+.purchase-button {
+  font-size: 16px;
+  width:300px;
+  height:50px;
+  border:solid 1px #000;
+  display: tablesell;
+  /* text-align: center; */
+}
+
+.purchase-button :hover {
+  color: #b0c4de;
+  cursor: pointer;
+}
+
+.purchase-button p {
+  font-weight:bold;
+  color:#000;
+  font-size:1em;
+}
