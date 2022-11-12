@@ -3,7 +3,7 @@ import { pinJSONtoIPFS } from "./pinata";
 require("dotenv")
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract/contract-abi.json");
-const contractAddress = "0x1Ddd82aA2012F86A4BB249Ce2b3986D83EAE9549";
+const contractAddress = "0x7a3741f06c05b98c1fB363f9DF8A108fBCe9e4d8";
 // const contractAddress = "0xd5e8B397f1Aa6059b2f81ef52b26e07B6c1b164c"
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
@@ -131,8 +131,6 @@ export const mintNFT = async (metadata) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
   console.log("contract is", window.contract)
 
-  // console.log(window.ethereum.selectedAddress)
-
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
     from: window.ethereum.selectedAddress, // must match user's active address.
@@ -239,18 +237,51 @@ export const ownerTokenURIs = async(walletAddress) => {
 
 export const transferNFT = async(walletAddress ,tokenId) => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress)
-  const OwnerAddress = await getOwner(tokenId)
+  const ownerAddress = await getOwner(tokenId)
   console.log("wallet address is: ", walletAddress)
-  console.log("owner address is: ", OwnerAddress)
-  await window.contract.methods.TransferNFT(OwnerAddress, walletAddress, tokenId).call()
+  console.log("owner address is: ", ownerAddress)
+  await window.contract.methods.TransferNFT(ownerAddress, walletAddress, tokenId).call()
   .then((res) => {
     console.log(res)
-    return res
+    return {
+      success: true,
+      response: res
+    }
   })
   .catch((err) => {
     console.log(err)
-    return err
+    return {
+      success: false,
+      response: err.message
+    }
   })
+
+  // const transactionParameters = {
+  //   to: contractAddress, // Required except during contract publications.
+  //   from: window.ethereum.selectedAddress, // must match user's active address.
+  //   data: window.contract.methods
+  //     .TransferNFT(ownerAddress, walletAddress, tokenURI)
+  //     .encodeABI(),
+  // };
+  // console.log("transactionParameters is :", transactionParameters)
+  // try {
+  //   const txHash = await window.ethereum.request({
+  //     method: "eth_sendTransaction",
+  //     params: [transactionParameters],
+  //   });
+  //   return {
+  //     success: true,
+  //     status:
+  //       "✅ Check out your transaction on Etherscan: https://goerli.etherscan.io/tx/" +
+  //       txHash,
+  //   };
+  // } catch (error) {
+  //   console.log("failed")
+  //   return {
+  //     success: false,
+  //     status: "😥 Something went wrong: " + error.message,
+  //   };
+  // }
 }
 
 export const getOwner = async(id) => {
@@ -279,7 +310,7 @@ export const getLatestTokenId = async() => {
 
 export const test = async() => {
   window.contract = await new web3.eth.Contract(contractABI, contractAddress)
-  await window.contract.methods.latest_tokenId().call()
+  await window.contract.methods.ownerOf(0).call()
   .then((res) => {
     console.log(res)
   })
@@ -287,5 +318,6 @@ export const test = async() => {
     console.log(err)
   })
 
-  // console.log(window.contract.methods)
+  console.log(window.contract.methods)
+  // 0x5D2aF3B810B8F20A330bAb097D6dDe668b62aBfd
 }

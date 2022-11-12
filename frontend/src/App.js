@@ -21,7 +21,7 @@ function App() {
   const getCounts = async() => {
     await allTokenURIs()
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       setMetadatas(res)
     })
     .catch((err) => {
@@ -32,7 +32,6 @@ function App() {
   const getWalletAddress = async() => {
     await getCurrentWalletAddress()
     .then((res) => {
-      console.log(res.address)
       setWalletAddress(res.address)
     })
     .catch((err) => {

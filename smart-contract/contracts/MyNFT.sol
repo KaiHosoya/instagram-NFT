@@ -13,6 +13,17 @@ contract MyNFT is ERC721, ERC721URIStorage {
 
     constructor() ERC721("MyNFT", "NFT") {}
 
+    // 所有権と売られているかの情報を格納する配列
+    struct ListedToken {
+        uint256 tokenId;
+        address payable owner;
+        address payable seller;
+        uint256 plice;
+        bool isListed;
+    }
+
+    mapping(uint256 => ListedToken) idToListedToken;
+
     function mintNFT(address to, string memory uri) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
@@ -37,10 +48,8 @@ contract MyNFT is ERC721, ERC721URIStorage {
 
     // 所有権の移譲と値段の設定
 
-    function TransferNFT(address from, address to, uint256 tokenId) public  returns(string memory) {
-        safeTransferFrom(from, to, tokenId);
-        string memory status = "success";
-        return status;
+    function transferNFT(address from, address to, uint256 tokenId) public {
+        _transfer(from, to, tokenId);
     }
 
     // NFT数の取得

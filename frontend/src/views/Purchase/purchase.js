@@ -16,7 +16,6 @@ const Purchase = () => {
   const handleSubmit = async() => {
     await transferNFT(walletAddress, location.state.id)
     .then((res) => {
-      console.log(res)
       navigate("/", { state: {message: "購入しました！"}})
       setOpen(true)
     })
